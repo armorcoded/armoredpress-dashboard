@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+
+# Next.js build output
+.next/
+
+# Environment files — never commit these
+.env
+.env.local
+.env*.local
+
+# Secrets and certs
+nginx/ssl/
+*.pem
+*.key
+*.crt
+
+# Backups and logs
+backups/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/

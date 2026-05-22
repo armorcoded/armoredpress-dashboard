@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── Brand colours ───────────────────────────────────────── */
+  --color-brand-50:  #EFF4FB;
+  --color-brand-100: #DDEAF7;
+  --color-brand-200: #B8D0EE;
+  --color-brand-300: #8EB1E3;
+  --color-brand-400: #5B8DD4;
+  --color-brand-500: #3B6DC2;
+  --color-brand-600: #2D54A0;
+  --color-brand-700: #234080;
+  --color-brand-800: #1A2F5F;
+  --color-brand-900: #111F3F;
+
+  /* ── Fonts ───────────────────────────────────────────────── */
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-mono: var(--font-mono-jetbrains), Menlo, monospace;
+
+  /* ── Shadows ─────────────────────────────────────────────── */
+  --shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.08), 0 1px 2px -1px rgb(0 0 0 / 0.06);
+  --shadow-card-hover: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.06);
+}
+
+@layer base {
+  :root { --sidebar-width: 220px; }
+  * { box-sizing: border-box; }
+  html { -webkit-font-smoothing: antialiased; }
+  body {
+    background-color: #f8fafc;
+    color: #0f172a;
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+  :focus-visible {
+    outline: 2px solid #3b6dc2;
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .ap-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 transparent;
+  }
+  .ap-scroll::-webkit-scrollbar { width: 5px; }
+  .ap-scroll::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1;
+    border-radius: 9999px;
+  }
+
+  .ap-card {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    box-shadow: var(--shadow-card);
+  }
+
+  .status-dot {
+    display: inline-block;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 9999px;
+    flex-shrink: 0;
+  }
+  .status-dot-green { background-color: #22c55e; }
+  .status-dot-amber { background-color: #eab308; }
+  .status-dot-red   { background-color: #ef4444; }
+  .status-dot-gray  { background-color: #94a3b8; }
+  .status-dot-blue  { background-color: #3b6dc2; }
+}
