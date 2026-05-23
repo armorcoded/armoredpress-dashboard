@@ -10,6 +10,44 @@ import { validateToken } from '@/lib/cloudflare/client';
 import { enqueueProvisioningJob } from '@/lib/queue/provisioning';
 import type { AuthedRequest } from '@/lib/auth/middleware';
 
+// ── GET /api/admin/sites — list all sites ─────────────────────────────────
+
+export const GET = withAuth(async (req: AuthedRequest) => {
+  const isAdmin = req.session.role === 'internal_admin';
+
+  const { rows } = await query(`
+    SELECT
+      s.id,
+      s.domain,
+      s.status,
+      s.plan_tier,
+      s.is_migration,
+      s.origin_ip,
+      s.runcloud_app_id,
+      s.cloudflare_zone_id,
+      s.created_at,
+      s.updated_at,
+      o.id   AS org_id,
+      o.name AS org_name,
+      pj.status       AS job_status,
+      pj.current_step AS job_step,
+      pj.id           AS job_id
+    FROM sites s
+    JOIN orgs o ON o.id = s.org_id
+    LEFT JOIN LATERAL (
+      SELECT id, status, current_step
+      FROM provisioning_jobs
+      WHERE site_id = s.id
+      ORDER BY created_at DESC
+      LIMIT 1
+    ) pj ON true
+    ${isAdmin ? '' : 'WHERE s.org_id = $1'}
+    ORDER BY s.created_at DESC
+  `, isAdmin ? [] : [req.session.org_id]);
+
+  return NextResponse.json({ ok: true, data: rows });
+}, ['internal_admin', 'org_admin', 'org_user']);
+
 const CreateSiteSchema = z.object({
   org_id:            z.string().uuid(),
   domain:            z.string().min(3).max(253),

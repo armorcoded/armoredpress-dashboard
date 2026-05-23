@@ -26,3 +26,9 @@ docker image prune -f
 
 echo "✓ Redeploy complete"
 docker compose ps
+
+echo "==> Reloading Nginx"
+docker compose exec nginx nginx -s reload
+
+# Ensure correct ownership on all project files
+sudo chown -R deploy:deploy /opt/armoredpress

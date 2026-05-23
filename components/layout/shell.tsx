@@ -16,11 +16,12 @@ interface NavItem {
   icon:  React.ElementType;
   badge?: number;
   adminOnly?: boolean;
+  comingSoon?: boolean;
 }
 
 const NAV_MAIN: NavItem[] = [
   { label: 'Overview',      href: '/overview',      icon: LayoutDashboard },
-  { label: 'Sites',         href: '/sites',          icon: Globe,        badge: 24 },
+  { label: 'Sites',         href: '/sites',          icon: Globe },
   { label: 'Organisations', href: '/organisations',  icon: Building2,    adminOnly: true },
   { label: 'Users',         href: '/users',          icon: Users,        adminOnly: true },
 ];
@@ -50,6 +51,21 @@ export function DashboardShell({ children, user }: ShellProps) {
 
   const navLink = (item: NavItem) => {
     if (item.adminOnly && !isAdmin) return null;
+
+    if (item.comingSoon) {
+      return (
+        <div
+          key={item.href}
+          className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-slate-300 cursor-not-allowed"
+          title="Coming soon"
+        >
+          <item.icon size={16} className="flex-shrink-0" />
+          <span className="flex-1">{item.label}</span>
+          <span className="text-xs text-slate-300 italic">soon</span>
+        </div>
+      );
+    }
+
     const active = pathname.startsWith(item.href);
     return (
       <Link
@@ -65,7 +81,7 @@ export function DashboardShell({ children, user }: ShellProps) {
       >
         <item.icon size={16} className="flex-shrink-0" />
         <span className="flex-1">{item.label}</span>
-        {item.badge && (
+        {item.badge !== undefined && item.badge > 0 && (
           <span className="text-xs bg-brand-500 text-white rounded-full px-1.5 py-px leading-none">
             {item.badge}
           </span>
