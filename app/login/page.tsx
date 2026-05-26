@@ -56,11 +56,8 @@ export default function LoginPage() {
     <div className="min-h-screen bg-slate-50 flex items-center justify-center px-4">
       <div className="w-full max-w-sm">
         {/* Logo mark */}
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-12 h-12 bg-brand-500 rounded-2xl mb-4">
-            <Shield size={24} className="text-white" />
-          </div>
-          <h1 className="text-xl font-semibold text-slate-900">ArmoredPress</h1>
+        <div className="flex flex-col items-center text-center mb-8">
+          <img src="/logo.svg" alt="ArmoredPress" className="h-14 w-auto mb-4 mx-auto" />
           <p className="mt-1 text-sm text-slate-500">Sign in to your account</p>
         </div>
 

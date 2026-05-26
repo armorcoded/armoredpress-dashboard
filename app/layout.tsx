@@ -17,8 +17,11 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'ArmoredPress',
+  title: 'ArmoredPress Dashboard',
   description: 'Secure WordPress hosting dashboard',
+  icons: {
+    icon:  '/favicon.ico',
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

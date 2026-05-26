@@ -94,10 +94,11 @@ export function DashboardShell({ children, user }: ShellProps) {
     <aside className="flex flex-col h-full bg-white border-r border-slate-200">
       {/* Logo */}
       <div className="flex items-center gap-2.5 px-4 py-4 border-b border-slate-100">
-        <div className="w-7 h-7 bg-brand-500 rounded-lg flex items-center justify-center flex-shrink-0">
-          <Shield size={14} className="text-white" />
-        </div>
-        <span className="font-semibold text-slate-900 text-sm">ArmoredPress</span>
+        <img
+          src="/logo.svg"
+          alt="ArmoredPress"
+          className="h-8 w-auto"
+        />
       </div>
 
       {/* Navigation */}

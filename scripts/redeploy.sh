@@ -6,6 +6,10 @@
 # ─────────────────────────────────────────────────────────────────────────────
 set -euo pipefail
 
+# Fix permissions — files uploaded as root need correcting before build
+sudo chown -R deploy:deploy /opt/armoredpress
+sudo chmod -R u+rw /opt/armoredpress
+
 APP_DIR="/opt/armoredpress"
 cd "$APP_DIR"
 
