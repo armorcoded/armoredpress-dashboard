@@ -5,7 +5,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import {
   LayoutDashboard, Globe, Building2, Users,
   ClipboardList, Clock, Settings, LogOut,
-  Shield, ChevronRight, Menu, X,
+  Shield, ChevronRight, Menu, X, LifeBuoy,
 } from 'lucide-react';
 import { cn } from '@/lib/utils/cn';
 import { Button } from '@/components/ui/button';
@@ -29,6 +29,7 @@ const NAV_MAIN: NavItem[] = [
 const NAV_SYSTEM: NavItem[] = [
   { label: 'Provisioning jobs', href: '/jobs',     icon: ClipboardList, adminOnly: true },
   { label: 'Activity log',      href: '/activity', icon: Clock },
+  { label: 'Support',           href: '/support',  icon: LifeBuoy },
   { label: 'Settings',          href: '/settings', icon: Settings },
 ];
 
